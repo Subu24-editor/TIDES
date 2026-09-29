@@ -18,10 +18,12 @@ import FinalCta from "./components/FinalCta.jsx"
 import Footer from "./components/Footer.jsx"
 import useSmoothScroll from "./hooks/useSmoothScroll.js"
 import useTilt from "./hooks/useTilt.js"
+import useScrollEffects from "./hooks/useScrollEffects.js"
 
 export default function App() {
   const smoothScroll = useSmoothScroll()
   useTilt()
+  useScrollEffects()
 
   return (
     <>
@@ -35,6 +37,9 @@ export default function App() {
       >
         Skip to content
       </a>
+      <div className="scroll-progress" aria-hidden="true">
+        <span className="scroll-progress__bar"></span>
+      </div>
       <CustomCursor />
       <Atmosphere />
       <Navbar />

@@ -2741,6 +2741,8 @@ a.tool__cta:hover {
     opacity: 0;
     transform: scale(1.4);
   }
+}
+
 @keyframes icon-spin {
   from { transform: rotate(0deg)   scale(1) }
   to   { transform: rotate(-12deg) scale(1.12) }
@@ -2803,9 +2805,6 @@ a.tool__cta:hover {
     0 0 0 1px rgba(0, 199, 232, 0.18),
     0 0 48px rgba(0, 199, 232, 0.1);
   border-color: rgba(0, 199, 232, 0.4);
-    0 32px 64px rgba(1,6,12,.68),
-    0 0 0 1px rgba(0,199,232,.22),
-    0 0 56px rgba(0,199,232,.10);
   border-color: rgba(0,199,232,.38);
 }
 
@@ -2817,9 +2816,6 @@ a.tool__cta:hover {
     transform var(--t-slow) var(--ease),
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease);
-    transform    var(--t-enter) var(--ease-spring),
-    box-shadow   var(--t-enter) var(--ease-spring),
-    border-color var(--t-enter) var(--ease-spring);
 }
 .game:not(:hover) {
   transition:
@@ -2834,9 +2830,6 @@ a.tool__cta:hover {
     0 28px 56px rgba(0, 0, 0, 0.55),
     0 0 60px rgba(0, 199, 232, 0.12),
     0 0 0 1px rgba(0, 199, 232, 0.3);
-    0 36px 72px rgba(0,0,0,.60),
-    0 0 72px rgba(0,199,232,.12),
-    0 0 0 1px rgba(0,199,232,.32);
 }
 .game:hover .game__badge {
   transform: translateY(-2px);
@@ -2912,10 +2905,6 @@ a.tool__cta:hover {
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease),
     background-color var(--t-slow) var(--ease);
-    transform        var(--t-enter) var(--ease-spring),
-    box-shadow       var(--t-enter) var(--ease-spring),
-    border-color     var(--t-enter) var(--ease-spring),
-    background-color var(--t-ui) var(--ease);
 }
 .social:not(:hover) {
   transition:
@@ -2931,16 +2920,11 @@ a.tool__cta:hover {
     0 20px 48px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(0, 199, 232, 0.28),
     0 0 40px rgba(0, 199, 232, 0.1);
-    0 28px 56px rgba(0,0,0,.50),
-    0 0 0 1px rgba(0,199,232,.30),
-    0 0 48px rgba(0,199,232,.12);
 }
 .social__icon {
   transition:
     transform 500ms var(--ease),
     filter 500ms var(--ease);
-    transform var(--t-enter) var(--ease-spring),
-    filter    var(--t-ui) var(--ease);
 }
 .social:hover .social__icon {
   transform: translateY(-4px) scale(1.1) rotate(-5deg);
@@ -2957,9 +2941,6 @@ a.tool__cta:hover {
     transform var(--t-slow) var(--ease),
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease);
-    transform    var(--t-enter) var(--ease-spring),
-    box-shadow   var(--t-enter) var(--ease-spring),
-    border-color var(--t-enter) var(--ease-spring);
 }
 .pillar:not(:hover) {
   transition:
@@ -2974,17 +2955,12 @@ a.tool__cta:hover {
     0 24px 48px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(0, 199, 232, 0.24),
     0 0 36px rgba(0, 199, 232, 0.08);
-    0 28px 56px rgba(0,0,0,.45),
-    0 0 0 1px rgba(0,199,232,.26),
-    0 0 44px rgba(0,199,232,.09);
 }
 .pillar__icon {
   transition:
     transform 400ms var(--ease),
     color var(--t-ui) var(--ease),
     filter 400ms var(--ease);
-    color   var(--t-ui) var(--ease),
-    filter  var(--t-ui) var(--ease);
 }
 .pillar:hover .pillar__icon {
   animation: icon-bounce 600ms var(--ease);
@@ -3002,9 +2978,6 @@ a.tool__cta:hover {
     transform var(--t-slow) var(--ease),
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease);
-    transform    var(--t-enter) var(--ease-spring),
-    box-shadow   var(--t-enter) var(--ease-spring),
-    border-color var(--t-enter) var(--ease-spring);
 }
 .person:not(:hover) {
   transition:
@@ -3019,9 +2992,6 @@ a.tool__cta:hover {
     0 24px 48px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(0, 199, 232, 0.24),
     0 0 40px rgba(0, 199, 232, 0.08);
-    0 28px 56px rgba(0,0,0,.50),
-    0 0 0 1px rgba(0,199,232,.26),
-    0 0 48px rgba(0,199,232,.09);
 }
 .person:hover .avatar {
   animation: ring-pulse 700ms ease-out;
@@ -3036,9 +3006,6 @@ a.tool__cta:hover {
     transform var(--t-slow) var(--ease),
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease);
-    transform    var(--t-enter) var(--ease-spring),
-    box-shadow   var(--t-enter) var(--ease-spring),
-    border-color var(--t-enter) var(--ease-spring);
 }
 .tool:not(:hover) {
   transition:
@@ -3053,9 +3020,6 @@ a.tool__cta:hover {
     0 24px 48px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(0, 199, 232, 0.24),
     0 0 36px rgba(0, 199, 232, 0.08);
-    0 28px 56px rgba(0,0,0,.45),
-    0 0 0 1px rgba(0,199,232,.26),
-    0 0 44px rgba(0,199,232,.09);
 }
 
 /* --- FAQ trigger row — indent on hover --- */
@@ -3065,8 +3029,6 @@ a.tool__cta:hover {
     background-color var(--t-ui) var(--ease),
     padding-left var(--t-ui) var(--ease),
     color var(--t-ui) var(--ease);
-    transform        var(--t-ui) var(--ease-spring),
-    color            var(--t-ui) var(--ease);
 }
 .faq__trigger:hover {
   padding-left: calc(var(--space-5) + 6px);
@@ -3081,8 +3043,6 @@ a.tool__cta:hover {
     background-color var(--t-ui) var(--ease),
     box-shadow var(--t-ui) var(--ease),
     padding-left var(--t-ui) var(--ease);
-    box-shadow       var(--t-ui) var(--ease),
-    transform        var(--t-ui) var(--ease-spring);
 }
 .reason:hover {
   padding-left: calc(var(--space-4) + 6px);
@@ -3099,9 +3059,6 @@ a.tool__cta:hover {
     transform var(--t-slow) var(--ease),
     box-shadow var(--t-slow) var(--ease),
     border-color var(--t-slow) var(--ease);
-    transform    var(--t-enter) var(--ease-spring),
-    box-shadow   var(--t-enter) var(--ease-spring),
-    border-color var(--t-enter) var(--ease-spring);
 }
 .why__cta:not(:hover) {
   transition:
@@ -3116,9 +3073,6 @@ a.tool__cta:hover {
     0 20px 44px rgba(0, 0, 0, 0.4),
     0 0 0 1px rgba(0, 199, 232, 0.22),
     0 0 32px rgba(0, 199, 232, 0.08);
-    0 24px 52px rgba(0,0,0,.44),
-    0 0 0 1px rgba(0,199,232,.24),
-    0 0 40px rgba(0,199,232,.09);
 }
 
 /* --- Timeline cards — nudge right --- */
@@ -3149,13 +3103,6 @@ a.tool__cta:hover {
 /* Disable heavy transforms on mobile */
 /* ---- Disable heavy transforms on touch devices ---- */
 @media (hover: none) {
-  .card:hover,
-  .game:hover,
-  .social:hover,
-  .pillar:hover,
-  .person:hover,
-  .tool:hover,
-  .why__cta:hover {
   .card:hover,        .card:not(:hover),
   .game:hover,        .game:not(:hover),
   .social:hover,      .social:not(:hover),
@@ -3183,19 +3130,33 @@ a.tool__cta:hover {
    23 — REVEAL ANIMATIONS
    ============================================================ */
 
-/* Base fade-up reveal */
+/* Base reveal: rise + un-blur + settle */
 .js .reveal {
   opacity: 0;
-  transform: translateY(48px);
+  transform: translate3d(0, 44px, 0) scale(0.975);
+  filter: blur(8px);
   transition:
-    opacity 800ms var(--ease-out) var(--reveal-delay, 0ms),
-    transform 800ms var(--ease-out) var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+    opacity 900ms var(--ease-out) var(--reveal-delay, 0ms),
+    transform 1000ms var(--ease-out) var(--reveal-delay, 0ms),
+    filter 800ms var(--ease-out) var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 .js .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: none;
   will-change: auto;
+}
+
+/* Once the entrance has finished, drop the delay/blur timing so hover
+   effects on cards respond instantly instead of inheriting the slow reveal. */
+.js .reveal.reveal-done {
+  transition:
+    transform var(--t-slow) var(--ease),
+    box-shadow var(--t-slow) var(--ease),
+    border-color var(--t-slow) var(--ease),
+    background-color var(--t-slow) var(--ease),
+    opacity var(--t-ui) var(--ease);
 }
 
 /* Slide-in from left */
@@ -3494,6 +3455,7 @@ a.tool__cta:hover {
   .js .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
   }
   .hero__logo,
   .hero__wordmark,
@@ -3559,8 +3521,83 @@ a.tool__cta:hover {
   .js .reveal {
     opacity: 1;
     transform: none;
+    filter: none;
   }
   .faq__panel[hidden] {
     height: auto;
+  }
+}
+
+
+/* ============================================================
+   26 — SCROLL MOTION
+   ============================================================ */
+
+/* reading-progress bar pinned to the top of the viewport */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 9998;
+  pointer-events: none;
+  background: rgba(3, 10, 20, 0.35);
+}
+.scroll-progress__bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--cyan), var(--moon) 60%, var(--gold));
+  box-shadow: 0 0 12px rgba(0, 199, 232, 0.65), 0 0 28px rgba(125, 235, 255, 0.25);
+  will-change: transform;
+}
+
+/* section titles wipe in from the left instead of just fading */
+.js .section-head.reveal .section-title {
+  clip-path: inset(-30% 100% -30% -5%);
+  transition: clip-path 1100ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 160ms);
+}
+.js .section-head.reveal.is-visible .section-title {
+  clip-path: inset(-30% -10% -30% -5%);
+}
+
+/* the rule beside "Owners" / "Admins" draws itself */
+.js .subsection-title.reveal::after {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1300ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 250ms);
+}
+.js .subsection-title.reveal.is-visible::after {
+  transform: scaleX(1);
+}
+
+/* lighter effect on touch devices — blur is costly on low-end phones */
+@media (pointer: coarse) {
+  .js .reveal {
+    filter: blur(3px);
+    transform: translate3d(0, 30px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress {
+    display: none;
+  }
+  .js .section-head.reveal .section-title,
+  .js .section-head.reveal.is-visible .section-title {
+    clip-path: none;
+  }
+  .js .subsection-title.reveal::after {
+    transform: none;
+  }
+}
+
+@media print {
+  .scroll-progress {
+    display: none !important;
+  }
+  .js .section-head.reveal .section-title {
+    clip-path: none;
   }
 }
