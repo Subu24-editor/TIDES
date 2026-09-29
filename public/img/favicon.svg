@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="The Dark Tides">
+  <defs>
+    <radialGradient id="fm" cx="40%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#F2FEFF"/>
+      <stop offset="34%" stop-color="#7DEBFF"/>
+      <stop offset="70%" stop-color="#2A93B4"/>
+      <stop offset="100%" stop-color="#0E3F55"/>
+    </radialGradient>
+    <linearGradient id="fw" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00C7E8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#7DEBFF"/>
+      <stop offset="100%" stop-color="#00C7E8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#030A14"/>
+  <circle cx="32" cy="27" r="15" fill="url(#fm)"/>
+  <g fill="#0A2C3C" opacity=".28">
+    <circle cx="26" cy="22" r="4.2"/>
+    <circle cx="38" cy="31" r="3.2"/>
+  </g>
+  <g fill="none" stroke="url(#fw)" stroke-linecap="round">
+    <path d="M6 44 C 14 39, 20 49, 30 44 S 46 38, 52 44 S 58 47, 59 45" stroke-width="3" opacity=".7"/>
+    <path d="M5 52 C 14 47, 21 57, 31 52 S 47 46, 53 52" stroke-width="3.6"/>
+  </g>
+</svg>

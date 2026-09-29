@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" role="img" aria-label="Cinematic artwork: a pale moon above a still midnight sea with a distant monolith">
+  <defs>
+    <linearGradient id="g2-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#030A14"/>
+      <stop offset="46%" stop-color="#06202F"/>
+      <stop offset="76%" stop-color="#0A3247"/>
+      <stop offset="100%" stop-color="#061A28"/>
+    </linearGradient>
+    <linearGradient id="g2-sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0C3E55"/>
+      <stop offset="30%" stop-color="#072736"/>
+      <stop offset="100%" stop-color="#020B13"/>
+    </linearGradient>
+    <radialGradient id="g2-moon" cx="42%" cy="36%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="38%" stop-color="#CFF6FF"/>
+      <stop offset="78%" stop-color="#7DEBFF"/>
+      <stop offset="100%" stop-color="#3EA9C6"/>
+    </radialGradient>
+    <radialGradient id="g2-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7DEBFF" stop-opacity=".45"/>
+      <stop offset="45%" stop-color="#00C7E8" stop-opacity=".13"/>
+      <stop offset="100%" stop-color="#00C7E8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="g2-mist" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#g2-sky)"/>
+
+  <!-- stars -->
+  <g fill="#E8F7FA">
+    <circle cx="72" cy="52" r="1.5" opacity=".5"/><circle cx="164" cy="96" r="1.1" opacity=".35"/>
+    <circle cx="248" cy="44" r="1.7" opacity=".45"/><circle cx="342" cy="110" r="1.2" opacity=".3"/>
+    <circle cx="586" cy="62" r="1.6" opacity=".45"/><circle cx="678" cy="122" r="1.2" opacity=".3"/>
+    <circle cx="744" cy="48" r="1.4" opacity=".4"/><circle cx="486" cy="150" r="1" opacity=".25"/>
+    <circle cx="120" cy="176" r="1.1" opacity=".25"/><circle cx="712" cy="200" r="1.2" opacity=".22"/>
+  </g>
+  <g fill="#A88A52" opacity=".6">
+    <circle cx="410" cy="70" r="1.5"/><circle cx="640" cy="168" r="1.2"/>
+  </g>
+
+  <!-- moon -->
+  <circle cx="556" cy="152" r="150" fill="url(#g2-halo)"/>
+  <circle cx="556" cy="152" r="58" fill="url(#g2-moon)"/>
+  <g fill="#5FB6CE" opacity=".3">
+    <circle cx="540" cy="138" r="13"/><circle cx="572" cy="170" r="9"/><circle cx="566" cy="126" r="6"/>
+  </g>
+
+  <!-- distant monolith silhouette -->
+  <path d="M186 300 L186 168 L200 150 L232 150 L246 170 L246 300 Z" fill="#02101A" opacity=".92"/>
+  <path d="M200 150 L200 300" stroke="#00C7E8" stroke-opacity=".22" stroke-width="1.5"/>
+  <path d="M246 170 L246 300" stroke="#00C7E8" stroke-opacity=".14" stroke-width="1.5"/>
+  <path d="M120 300 L120 224 L134 210 L154 210 L164 226 L164 300 Z" fill="#02101A" opacity=".8"/>
+
+  <!-- mist band on the horizon -->
+  <ellipse cx="400" cy="296" rx="420" ry="26" fill="#0B3B52" opacity=".55" filter="url(#g2-mist)"/>
+
+  <!-- sea -->
+  <rect y="300" width="800" height="180" fill="url(#g2-sea)"/>
+
+  <!-- moonlight path on the water -->
+  <g fill="#7DEBFF">
+    <rect x="520" y="312" width="72" height="3" rx="1.5" opacity=".45"/>
+    <rect x="506" y="330" width="100" height="3" rx="1.5" opacity=".34"/>
+    <rect x="488" y="352" width="136" height="3.5" rx="1.75" opacity=".26"/>
+    <rect x="468" y="380" width="176" height="3.5" rx="1.75" opacity=".18"/>
+    <rect x="446" y="414" width="220" height="4" rx="2" opacity=".12"/>
+    <rect x="424" y="452" width="264" height="4" rx="2" opacity=".08"/>
+  </g>
+
+  <!-- gentle swell -->
+  <g fill="none" stroke="#00C7E8" stroke-opacity=".16" stroke-width="1.5" stroke-linecap="round">
+    <path d="M-10 340 C 90 330, 170 350, 268 340 S 430 328, 520 342"/>
+    <path d="M-10 392 C 110 380, 200 404, 310 392 S 500 376, 610 394"/>
+    <path d="M40 444 C 160 430, 260 458, 380 444 S 600 426, 740 448"/>
+  </g>
+</svg>

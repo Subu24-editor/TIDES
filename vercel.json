@@ -1,0 +1,7 @@
+{
+  "buildCommand": "node ./node_modules/vite/bin/vite.js build",
+  "rewrites": [
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/dashboard/", "destination": "/dashboard.html" }
+  ]
+}
