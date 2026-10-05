@@ -1,0 +1,220 @@
+{
+  "changelog": [
+    {
+      "badge": "Fix",
+      "badgeClass": "badge--fix",
+      "date": "2026-08-09",
+      "dateLabel": "Aug 09, 2026",
+      "title": "Tides Downloader updated to V1.2.4!",
+      "text": "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates."
+    },
+    {
+      "badge": "Fix",
+      "badgeClass": "badge--fix",
+      "date": "2026-08-08",
+      "dateLabel": "Aug 08, 2026",
+      "title": "Tides Downloader updated to V1.2.0!",
+      "text": ""
+    },
+    {
+      "badge": "Featured",
+      "badgeClass": "badge--featured",
+      "date": "2026-07-28",
+      "dateLabel": "Jul 28, 2026",
+      "title": "Luna, the automation bot, added to server",
+      "text": ""
+    }
+  ],
+  "fleet": [
+    {
+      "art": "/img/games/art-01.svg",
+      "badge": "Coming soon",
+      "genre": "Action / RPG",
+      "title": "Tidal Ascendancy",
+      "text": "An oceanic tactical warfare game set in ancient depths."
+    },
+    {
+      "art": "/img/games/art-02.svg",
+      "badge": "Popular",
+      "genre": "Survival",
+      "title": "Abyssal Horizon",
+      "text": "Navigate uncharted oceanic trench zones with your team."
+    },
+    {
+      "art": "/img/games/art-03.svg",
+      "badge": "Coming soon",
+      "genre": "MMO",
+      "title": "Dark Tides Reborn",
+      "text": "Community-driven persistent world with player economies."
+    }
+  ],
+  "discord": {
+    "url": "https://discord.gg/thedarktides"
+  },
+  "about": [
+    {
+      "title": "Gaming",
+      "text": "Discover what the community is playing and what is currently rising from the depths."
+    },
+    {
+      "title": "Community",
+      "text": "A place for gamers, developers, and enthusiasts to meet, talk, and stay connected."
+    },
+    {
+      "title": "Projects",
+      "text": "Share what you are building and follow the tools and projects made for the community."
+    },
+    {
+      "title": "Updates",
+      "text": "Patch notes, world events, and announcements land here first — and in Discord."
+    }
+  ],
+  "tools": [
+    {
+      "title": "Tides Downloader",
+      "text": "Built by Dreamleak. Grab the link and setup details in Discord.",
+      "ctaText": "Discord link coming soon →",
+      "href": ""
+    }
+  ],
+  "staff": {
+    "owners": [
+      {
+        "mono": "M",
+        "name": "Maverick",
+        "role": "Owner",
+        "text": "Runs the server and guides the staff, with a hand in community leadership and direction.",
+        "discordId": "1308098540722982922",
+        "image": "https://cdn.discordapp.com/avatars/1308098540722982922/148beca4e9fdc11b492da388645524a8.png?size=256"
+      },
+      {
+        "mono": "F",
+        "name": "f1x3xnz",
+        "role": "Owner",
+        "text": "Community leadership and direction.",
+        "discordId": "884470673144164382",
+        "image": "https://cdn.discordapp.com/avatars/884470673144164382/a05c9faf653a5fac6887c429ff06e6e6.png?size=256"
+      },
+      {
+        "mono": "H",
+        "name": "HelmXGaming",
+        "role": "Owner",
+        "text": "Community leadership and direction. Also manages the bot.",
+        "discordId": "673414066089230337",
+        "image": "https://cdn.discordapp.com/avatars/673414066089230337/a_6ac5092f9db8f2c98f2c5ea0bd1ea03a.png?size=256"
+      }
+    ],
+    "admins": [
+      {
+        "mono": "T",
+        "name": "TheDarkKnight",
+        "role": "Admin",
+        "text": "Community moderation and guidance",
+        "discordId": "698945970947489794",
+        "image": "https://cdn.discordapp.com/avatars/698945970947489794/51705ff8688bdcd293ac760ee42c19e4.png?size=256"
+      },
+      {
+        "mono": "X",
+        "name": "Xei",
+        "role": "Admin",
+        "text": "Community moderation and guidance",
+        "discordId": "131414719666847745",
+        "image": "https://cdn.discordapp.com/avatars/131414719666847745/379fd2a47011aa4879b4b3820e8de845.png?size=256"
+      },
+      {
+        "mono": "S",
+        "name": "Subu Edits",
+        "role": "Admin",
+        "text": "Community moderation and guidance",
+        "discordId": "1133671452151906364"
+      },
+      {
+        "mono": "J",
+        "name": "JODIE",
+        "role": "Admin",
+        "text": "Community moderation and guidance",
+        "discordId": "1246057393201221695"
+      },
+      {
+        "mono": "F",
+        "name": "FELLER",
+        "role": "Admin",
+        "text": "Community moderation and guidance",
+        "discordId": "663327544715509760"
+      }
+    ]
+  },
+  "developer": [
+    {
+      "name": "Dreamleak",
+      "role": "Developer",
+      "text": "Founder of Luna bot and the Tides Downloader — building the tools that keep the community running.",
+      "image": "https://cdn.discordapp.com/avatars/234662586082131968/b4b52b600b669f4101fd4ef55197a4b4.png?size=256",
+      "lineage": [
+        "Dreamleak",
+        "Developer",
+        "Luna",
+        "Dark Tides Community"
+      ],
+      "discordId": "234662586082131968"
+    },
+    {
+      "name": "DEV",
+      "role": "Developer",
+      "text": "Just an ordinary developer, helping on developing this website",
+      "image": "https://cdn.discordapp.com/avatars/680340167835385877/d67f997d5cb172aeaa63dc9ebb9b2164.png?size=256",
+      "lineage": [
+        "Developer"
+      ],
+      "discordId": "680340167835385877"
+    },
+    {
+      "name": "Subu Edits",
+      "role": "Developer",
+      "text": "Fullstack developer helping design, build and ship this website.",
+      "image": "/img/people/subu.svg",
+      "lineage": [
+        "Subu Edits",
+        "Developer",
+        "Dark Tides Community"
+      ],
+      "discordId": "1133671452151906364"
+    }
+  ],
+  "luna": [
+    {
+      "name": "Lunaaa",
+      "meta": "Created by Dreamleak · Est. 2026",
+      "text": "I'm Luna, the automation bot of The Dark Tides. I help manage the community, assist members, handle users, and keep things running smoothly behind the scenes.",
+      "signoff": "Let's meet in the server! 💜",
+      "image": "https://cdn.discordapp.com/avatars/1509079875917582336/5ced155bf1820cefe4b98a8d3e4f050c.png?size=256",
+      "discordId": "1509079875917582336"
+    }
+  ],
+  "faq": [
+    {
+      "id": "q1",
+      "question": "What is The Dark Tides server?",
+      "answer": "THE DARK TIDES is a gaming and community hub for gamers, developers, and enthusiasts. It's a place to discover games, share projects, access tools, get updates, and connect with the community.",
+      "placeholder": false
+    },
+    {
+      "id": "q2",
+      "question": "What is Tides Downloader?",
+      "answer": "Tides Downloader is a tool built by Dreamleak for The Dark Tides community. Setup details and access information are provided through the Discord server.",
+      "placeholder": false
+    },
+    {
+      "id": "q3",
+      "question": "How do I join the Discord?",
+      "answer": "Use the JOIN DISCORD button on the website to enter The Dark Tides community. Once you're in, you'll be able to access announcements, community channels, projects, support, and more.",
+      "placeholder": false
+    },
+    {
+      "id": "q4",
+      "question": "How can I contact staff?",
+      "answer": "Join the Discord server and reach out through the appropriate support or community channels. The Dark Tides staff team is there to help members with questions and issues.",
+      "placeholder": false
+    }
+  ]
+}

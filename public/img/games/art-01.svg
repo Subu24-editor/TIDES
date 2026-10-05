@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480" role="img" aria-label="Cinematic artwork: shafts of cyan light falling into a deep ocean trench">
+  <defs>
+    <linearGradient id="g1-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B3245"/>
+      <stop offset="34%" stop-color="#072536"/>
+      <stop offset="72%" stop-color="#041724"/>
+      <stop offset="100%" stop-color="#020A12"/>
+    </linearGradient>
+    <linearGradient id="g1-shaft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7DEBFF" stop-opacity=".34"/>
+      <stop offset="55%" stop-color="#00C7E8" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#00C7E8" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="g1-glow" cx="50%" cy="0%" r="72%">
+      <stop offset="0%" stop-color="#7DEBFF" stop-opacity=".40"/>
+      <stop offset="60%" stop-color="#00C7E8" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#00C7E8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="g1-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#g1-bg)"/>
+  <rect width="800" height="480" fill="url(#g1-glow)"/>
+
+  <!-- light shafts -->
+  <g>
+    <polygon points="300,0 360,0 470,480 250,480" fill="url(#g1-shaft)"/>
+    <polygon points="470,0 512,0 590,480 420,480" fill="url(#g1-shaft)" opacity=".7"/>
+    <polygon points="150,0 186,0 244,480 96,480" fill="url(#g1-shaft)" opacity=".5"/>
+    <polygon points="630,0 660,0 726,480 596,480" fill="url(#g1-shaft)" opacity=".4"/>
+  </g>
+
+  <!-- trench walls -->
+  <path d="M0 480 L0 214 C 60 236, 118 300, 168 366 C 200 408, 224 446, 236 480 Z" fill="#04121C" opacity=".95"/>
+  <path d="M800 480 L800 186 C 736 214, 674 288, 626 358 C 594 404, 570 448, 558 480 Z" fill="#04121C" opacity=".95"/>
+  <path d="M0 480 L0 300 C 74 330, 140 396, 182 480 Z" fill="#020A12"/>
+  <path d="M800 480 L800 282 C 722 316, 656 390, 616 480 Z" fill="#020A12"/>
+
+  <!-- rim light on the trench edges -->
+  <path d="M0 214 C 60 236, 118 300, 168 366" fill="none" stroke="#00C7E8" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M800 186 C 736 214, 674 288, 626 358" fill="none" stroke="#00C7E8" stroke-opacity=".22" stroke-width="2"/>
+
+  <!-- drifting motes -->
+  <g fill="#7DEBFF">
+    <circle cx="322" cy="128" r="2.2" opacity=".5"/>
+    <circle cx="418" cy="212" r="1.6" opacity=".4"/>
+    <circle cx="366" cy="316" r="2.6" opacity=".3"/>
+    <circle cx="498" cy="164" r="1.8" opacity=".45"/>
+    <circle cx="266" cy="248" r="1.5" opacity=".3"/>
+    <circle cx="540" cy="330" r="2" opacity=".26"/>
+    <circle cx="452" cy="404" r="1.6" opacity=".22"/>
+  </g>
+
+  <!-- depth haze -->
+  <ellipse cx="400" cy="470" rx="300" ry="70" fill="#020A12" opacity=".7" filter="url(#g1-blur)"/>
+</svg>

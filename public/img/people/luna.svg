@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Placeholder avatar for Luna, the automation bot">
+  <defs>
+    <radialGradient id="luna-bg" cx="42%" cy="34%" r="76%">
+      <stop offset="0%" stop-color="#123A4E"/>
+      <stop offset="58%" stop-color="#0A1D2A"/>
+      <stop offset="100%" stop-color="#061522"/>
+    </radialGradient>
+    <linearGradient id="luna-crescent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F2FEFF"/>
+      <stop offset="45%" stop-color="#7DEBFF"/>
+      <stop offset="100%" stop-color="#00C7E8"/>
+    </linearGradient>
+    <mask id="luna-mask">
+      <rect width="240" height="240" fill="#000"/>
+      <circle cx="126" cy="118" r="56" fill="#fff"/>
+      <circle cx="152" cy="102" r="48" fill="#000"/>
+    </mask>
+    <filter id="luna-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+
+  <circle cx="120" cy="120" r="120" fill="url(#luna-bg)"/>
+
+  <!-- soft inner light -->
+  <circle cx="120" cy="112" r="74" fill="#00C7E8" opacity=".16" filter="url(#luna-glow)"/>
+
+  <!-- crescent -->
+  <rect width="240" height="240" fill="url(#luna-crescent)" mask="url(#luna-mask)"/>
+
+  <!-- orbit ring -->
+  <ellipse cx="120" cy="126" rx="88" ry="34" fill="none" stroke="#00C7E8" stroke-opacity=".38" stroke-width="1.6"
+           transform="rotate(-18 120 126)"/>
+  <circle cx="44" cy="146" r="3.4" fill="#7DEBFF" opacity=".8"/>
+
+  <!-- tide line beneath -->
+  <g fill="none" stroke="#00C7E8" stroke-linecap="round">
+    <path d="M50 190 C 72 180, 92 200, 118 190 S 166 178, 192 190" stroke-width="4" stroke-opacity=".55"/>
+    <path d="M62 208 C 82 200, 100 216, 122 208 S 162 198, 182 208" stroke-width="3" stroke-opacity=".3"/>
+  </g>
+
+  <!-- tiny stars -->
+  <g fill="#E8F7FA" opacity=".6">
+    <circle cx="58" cy="62" r="2"/><circle cx="188" cy="72" r="1.6"/><circle cx="196" cy="160" r="1.4"/>
+  </g>
+  <circle cx="70" cy="42" r="1.8" fill="#A88A52" opacity=".8"/>
+</svg>
