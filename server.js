@@ -178,6 +178,28 @@ const server = http.createServer(async (req, res) => {
     return
   }
 
+  // Live Discord server stats (member + online counts)
+  if (req.url?.startsWith("/api/discord-stats")) {
+    res.setHeader("Content-Type", "application/json")
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    try {
+      const { fetchStats } = await import("./api/discord-stats.js")
+      const stats = await fetchStats()
+      if (!stats) {
+        res.statusCode = 502
+        res.end(JSON.stringify({ error: "Discord stats unavailable" }))
+        return
+      }
+      res.setHeader("Cache-Control", "public, max-age=30")
+      res.statusCode = 200
+      res.end(JSON.stringify(stats))
+    } catch (err) {
+      res.statusCode = 500
+      res.end(JSON.stringify({ error: "Stats handler failed" }))
+    }
+    return
+  }
+
   // Discord Guild Roles Lookup Endpoint
   if (req.url?.startsWith("/api/discord-roles")) {
     res.setHeader("Content-Type", "application/json")

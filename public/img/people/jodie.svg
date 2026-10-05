@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Avatar for JODIE, admin">
+  <defs>
+    <radialGradient id="jd-bg" cx="40%" cy="32%" r="78%">
+      <stop offset="0%" stop-color="#10394C"/>
+      <stop offset="56%" stop-color="#0A1D2A"/>
+      <stop offset="100%" stop-color="#05121C"/>
+    </radialGradient>
+    <linearGradient id="jd-wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A88A52" stop-opacity=".2"/>
+      <stop offset="50%" stop-color="#E3C98A"/>
+      <stop offset="100%" stop-color="#A88A52" stop-opacity=".2"/>
+    </linearGradient>
+    <filter id="jd-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <circle cx="120" cy="120" r="120" fill="url(#jd-bg)"/>
+  <circle cx="120" cy="112" r="62" fill="#A88A52" opacity=".13" filter="url(#jd-glow)"/>
+
+  <!-- ring -->
+  <circle cx="120" cy="112" r="58" fill="none" stroke="#E3C98A" stroke-width="3" stroke-opacity=".85"/>
+  <circle cx="120" cy="112" r="46" fill="#0D2938" fill-opacity=".8" stroke="#A88A52" stroke-width="1.4" stroke-opacity=".5"/>
+
+  <!-- S monogram -->
+  <text x="120" y="132" text-anchor="middle" font-family="Cinzel, Georgia, serif" font-size="62" font-weight="700" fill="#E3C98A">J</text>
+
+  <!-- tide line -->
+  <g fill="none" stroke="url(#jd-wave)" stroke-linecap="round">
+    <path d="M72 186 C 90 176, 104 196, 120 186 S 150 176, 168 186" stroke-width="3.4"/>
+    <path d="M82 202 C 98 194, 110 210, 124 202 S 152 194, 160 202" stroke-width="2.6" opacity=".6"/>
+  </g>
+
+  <g stroke="#A88A52" stroke-opacity=".35" stroke-width="1.5" stroke-linecap="round">
+    <path d="M28 112 H 48"/><path d="M192 112 H 212"/>
+  </g>
+  <g fill="#A88A52" opacity=".75">
+    <circle cx="26" cy="112" r="2"/><circle cx="214" cy="112" r="2"/>
+  </g>
+</svg>

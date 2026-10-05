@@ -3601,3 +3601,33 @@ a.tool__cta:hover {
     clip-path: none;
   }
 }
+
+
+/* ============================================================
+   27 — TIMELINE THUMBNAILS
+   ============================================================ */
+.timeline__card--media {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.9rem, 0.6rem + 1vw, 1.4rem);
+}
+.timeline__body {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.timeline__thumb {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid rgba(125, 235, 255, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 18px rgba(0, 199, 232, 0.12);
+}
+@media (max-width: 520px) {
+  .timeline__thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+}

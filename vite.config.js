@@ -199,17 +199,39 @@ function jsonDbPlugin() {
     res.end(JSON.stringify([]))
   }
 
+  const handleDiscordStatsApi = async (req, res) => {
+    res.setHeader("Content-Type", "application/json")
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    try {
+      const { fetchStats } = await import("./api/discord-stats.js")
+      const stats = await fetchStats()
+      if (!stats) {
+        res.statusCode = 502
+        res.end(JSON.stringify({ error: "Discord stats unavailable" }))
+        return
+      }
+      res.setHeader("Cache-Control", "public, max-age=30")
+      res.statusCode = 200
+      res.end(JSON.stringify(stats))
+    } catch (err) {
+      res.statusCode = 500
+      res.end(JSON.stringify({ error: "Stats handler failed" }))
+    }
+  }
+
   return {
     name: "json-db-api",
     configureServer(server) {
       server.middlewares.use("/api/db", handleDbApi)
       server.middlewares.use("/api/discord-user", handleDiscordUserApi)
       server.middlewares.use("/api/discord-roles", handleDiscordRolesApi)
+      server.middlewares.use("/api/discord-stats", handleDiscordStatsApi)
     },
     configurePreviewServer(server) {
       server.middlewares.use("/api/db", handleDbApi)
       server.middlewares.use("/api/discord-user", handleDiscordUserApi)
       server.middlewares.use("/api/discord-roles", handleDiscordRolesApi)
+      server.middlewares.use("/api/discord-stats", handleDiscordStatsApi)
     },
   }
 }

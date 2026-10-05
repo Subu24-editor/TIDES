@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import useScrollReveal from "../hooks/useScrollReveal.js"
 import useStore from "../hooks/useStore.js"
+import SpotlightAvatar from "./SpotlightAvatar.jsx"
 
 const DEFAULT_BOTS = [
   {
@@ -51,17 +52,7 @@ export default function LunaSection() {
               data-tilt
             >
               <div className="spotlight__light" aria-hidden="true"></div>
-              <div className="spotlight__avatar">
-                <img
-                  className="avatar__img"
-                  src={bot.image || "/img/people/luna.svg"}
-                  alt=""
-                  width="240"
-                  height="240"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+              <SpotlightAvatar person={bot} fallbackSrc="/img/people/luna.svg" />
               <div className="spotlight__body">
                 <h3 className="spotlight__name">{bot.name}</h3>
                 {bot.meta && <p className="spotlight__meta">{bot.meta}</p>}

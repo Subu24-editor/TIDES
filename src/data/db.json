@@ -6,7 +6,8 @@
       "date": "2026-08-09",
       "dateLabel": "Aug 09, 2026",
       "title": "Tides Downloader updated to V1.2.4!",
-      "text": "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates."
+      "text": "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates.",
+      "image": "/img/updates/downloader.svg"
     },
     {
       "badge": "Fix",
@@ -14,7 +15,8 @@
       "date": "2026-08-08",
       "dateLabel": "Aug 08, 2026",
       "title": "Tides Downloader updated to V1.2.0!",
-      "text": ""
+      "text": "",
+      "image": "/img/updates/downloader.svg"
     },
     {
       "badge": "Featured",
@@ -22,7 +24,8 @@
       "date": "2026-07-28",
       "dateLabel": "Jul 28, 2026",
       "title": "Luna, the automation bot, added to server",
-      "text": ""
+      "text": "",
+      "image": "https://cdn.discordapp.com/avatars/1509079875917582336/5ced155bf1820cefe4b98a8d3e4f050c.png?size=256"
     }
   ],
   "fleet": [
@@ -126,21 +129,24 @@
         "name": "Subu Edits",
         "role": "Admin",
         "text": "Community moderation and guidance",
-        "discordId": "1133671452151906364"
+        "discordId": "1133671452151906364",
+        "image": "/img/people/subu.svg"
       },
       {
         "mono": "J",
         "name": "JODIE",
         "role": "Admin",
         "text": "Community moderation and guidance",
-        "discordId": "1246057393201221695"
+        "discordId": "1246057393201221695",
+        "image": "/img/people/jodie.svg"
       },
       {
         "mono": "F",
         "name": "FELLER",
         "role": "Admin",
         "text": "Community moderation and guidance",
-        "discordId": "663327544715509760"
+        "discordId": "663327544715509760",
+        "image": "/img/people/feller.svg"
       }
     ]
   },

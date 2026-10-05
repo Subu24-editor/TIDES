@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import useScrollReveal from "../hooks/useScrollReveal.js"
 import useStore from "../hooks/useStore.js"
+import SpotlightAvatar from "./SpotlightAvatar.jsx"
 
 const DEFAULT_DEVS = [
   {
@@ -65,17 +66,10 @@ export default function DeveloperSection() {
                   data-tilt
                 >
                   <div className="spotlight__light" aria-hidden="true"></div>
-                  <div className="spotlight__avatar">
-                    <img
-                      className="avatar__img"
-                      src={devItem.image || "/img/people/dreamleak.svg"}
-                      alt=""
-                      width="240"
-                      height="240"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                  <SpotlightAvatar
+                    person={devItem}
+                    fallbackSrc="/img/people/dreamleak.svg"
+                  />
                   <div className="spotlight__body">
                     <h3 className="spotlight__name">{devItem.name}</h3>
                     <p className="spotlight__role">

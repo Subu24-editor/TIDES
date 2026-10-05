@@ -37,6 +37,7 @@ export default async function handler(req, res) {
             .slice(0, 2)
         : "U"
 
+      res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=86400")
       res.status(200).json({
         id: data.id,
         name: name,

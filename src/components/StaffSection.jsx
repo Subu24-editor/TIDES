@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import useScrollReveal from "../hooks/useScrollReveal.js"
 import useStore from "../hooks/useStore.js"
+import useAvatar from "../hooks/useAvatar.js"
 
 const DEFAULT_STAFF = {
   owners: [
@@ -46,6 +47,8 @@ const DEFAULT_STAFF = {
 }
 
 function PersonCard({ person, isOwner }) {
+  const { src: avatarSrc, onError } = useAvatar(person)
+  const hasAvatar = Boolean(person.image || person.discordId)
   return (
     <article
       className={`card person${isOwner ? " person--owner" : ""} reveal`}
@@ -55,9 +58,10 @@ function PersonCard({ person, isOwner }) {
         className={`avatar${isOwner ? " avatar--owner" : ""}`}
         aria-hidden="true"
       >
-        {person.image ? (
+        {hasAvatar ? (
           <img
-            src={person.image}
+            src={avatarSrc}
+            onError={onError}
             alt=""
             width="80"
             height="80"

@@ -1,96 +1,109 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import useServerStats from "../hooks/useServerStats.js"
 
-const GUILD_ID = import.meta.env.VITE_DISCORD_GUILD_ID || "1498057802499883181"
-const DURATION = 2000
+const FALLBACK_COUNT = 10600
 
 function easeOutExpo(t) {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t)
 }
 
 function formatNumber(value) {
-  return value ? value.toLocaleString("en-US") : "0"
+  return Number.isFinite(value) ? Math.round(value).toLocaleString("en-US") : "0"
 }
 
-export default function Counter() {
-  const [onlineCount, setOnlineCount] = useState(null)
-  const [serverName, setServerName] = useState("The Dark Tides")
-  const [isLive, setIsLive] = useState(false)
-  const numberRef = useRef(null)
-  const suffixRef = useRef(null)
-  const frameRef = useRef(null)
-  const isMountedRef = useRef(true)
+/**
+ * Animates toward `target`: the first run counts up from 0 once the section is
+ * on screen; later updates glide from the number currently shown.
+ */
+function useCountUp(target, active) {
+  const [value, setValue] = useState(0)
+  const valueRef = useRef(0)
+  const hasPlayedRef = useRef(false)
 
   useEffect(() => {
-    isMountedRef.current = true
+    if (!active || typeof target !== "number") return
 
-    async function fetchDiscordStats() {
-      try {
-        const res = await fetch(
-          `https://discord.com/api/v10/guilds/${GUILD_ID}/widget.json`,
-        )
-        if (res.ok && isMountedRef.current) {
-          const data = await res.json()
-          if (!isMountedRef.current) return
-          if (data.name) setServerName(data.name)
-          if (typeof data.presence_count === "number") {
-            setOnlineCount(data.presence_count)
-            setIsLive(true)
-            animateCount(data.presence_count)
-          }
-        }
-      } catch (err) {
-        console.warn(
-          "Could not fetch Discord live widget (Enable Widget in Discord Server Settings -> Widget)",
-          err,
-        )
-      }
-    }
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const from = hasPlayedRef.current ? valueRef.current : 0
+    const duration = hasPlayedRef.current ? 900 : 2000
+    hasPlayedRef.current = true
 
-    fetchDiscordStats()
-    const interval = setInterval(fetchDiscordStats, 30000)
-
-    return () => {
-      isMountedRef.current = false
-      clearInterval(interval)
-      if (frameRef.current) cancelAnimationFrame(frameRef.current)
-    }
-  }, [])
-
-  const animateCount = (target) => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches
-    if (prefersReduced) {
-      if (numberRef.current)
-        numberRef.current.textContent = formatNumber(target)
+    if (reduced || from === target) {
+      valueRef.current = target
+      setValue(target)
       return
     }
 
-    if (frameRef.current) cancelAnimationFrame(frameRef.current)
+    let frame = 0
     let start = null
-
-    function step(now) {
-      if (!isMountedRef.current) return
+    const step = (now) => {
       if (start === null) start = now
-      const progress = Math.min((now - start) / DURATION, 1)
-      const value = Math.round(easeOutExpo(progress) * target)
-
-      if (numberRef.current) numberRef.current.textContent = formatNumber(value)
-      if (suffixRef.current)
-        suffixRef.current.textContent = progress === 1 ? "+" : ""
-
-      if (progress < 1) {
-        frameRef.current = requestAnimationFrame(step)
-      } else {
-        frameRef.current = null
-      }
+      const t = Math.min((now - start) / duration, 1)
+      const next = from + (target - from) * easeOutExpo(t)
+      valueRef.current = next
+      setValue(next)
+      if (t < 1) frame = requestAnimationFrame(step)
     }
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
+  }, [target, active])
 
-    frameRef.current = requestAnimationFrame(step)
+  return value
+}
+
+export default function Counter() {
+  const stats = useServerStats()
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el || !("IntersectionObserver" in window)) {
+      setVisible(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.25 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const hasMembers = stats.live && typeof stats.members === "number"
+  const hasOnlineOnly = stats.live && !hasMembers && typeof stats.online === "number"
+  const isLive = hasMembers || hasOnlineOnly
+  const target = hasMembers ? stats.members : hasOnlineOnly ? stats.online : null
+
+  const animated = useCountUp(target, visible)
+  const shown = isLive ? animated : FALLBACK_COUNT
+  const name = stats.name || "The Dark Tides"
+
+  let eyebrow = "Your community is now growing"
+  let note = "10,600+ — and growing more every day"
+  if (hasMembers) {
+    eyebrow = `${name} — Members`
+    note =
+      typeof stats.online === "number"
+        ? `${formatNumber(stats.online)} online right now in Discord`
+        : "And the tide keeps rising"
+  } else if (hasOnlineOnly) {
+    eyebrow = `${name} — Live Online Members`
+    note = `${formatNumber(stats.online)} active members online right now in Discord`
   }
 
   return (
-    <section className="counter" id="pulse" aria-labelledby="counter-title">
+    <section
+      className="counter"
+      id="pulse"
+      aria-labelledby="counter-title"
+      ref={sectionRef}
+    >
       <div className="shell">
         <div className="counter__inner reveal">
           <p
@@ -114,37 +127,23 @@ export default function Counter() {
                 }}
               />
             )}
-            {isLive
-              ? `${serverName} — Live Online Members`
-              : "Your community is now growing"}
+            {eyebrow}
           </p>
 
           <p
             className="counter__value"
-            aria-label={`${formatNumber(onlineCount || 10600)}+`}
+            aria-label={isLive ? formatNumber(target) : `${formatNumber(FALLBACK_COUNT)}+`}
           >
-            <span
-              className="counter__number"
-              ref={numberRef}
-              aria-hidden="true"
-            >
-              {formatNumber(onlineCount || 10600)}
+            <span className="counter__number" aria-hidden="true">
+              {formatNumber(shown)}
             </span>
-            <span
-              className="counter__suffix"
-              ref={suffixRef}
-              aria-hidden="true"
-            >
-              +
+            <span className="counter__suffix" aria-hidden="true">
+              {isLive ? "" : "+"}
             </span>
           </p>
 
           <div className="counter__rule" aria-hidden="true"></div>
-          <p className="counter__note">
-            {isLive
-              ? `${formatNumber(onlineCount)} active members online right now in Discord`
-              : "10,600+ — and growing more every day"}
-          </p>
+          <p className="counter__note">{note}</p>
         </div>
       </div>
     </section>

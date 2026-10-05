@@ -9,6 +9,7 @@ const DEFAULT_UPDATES = [
     date: "2026-08-09",
     dateLabel: "Aug 09, 2026",
     title: "Tides Downloader updated to V1.2.4!",
+    image: "/img/updates/downloader.svg",
     text: "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates.",
   },
   {
@@ -17,6 +18,7 @@ const DEFAULT_UPDATES = [
     date: "2026-08-08",
     dateLabel: "Aug 08, 2026",
     title: "Tides Downloader updated to V1.2.0!",
+    image: "/img/updates/downloader.svg",
     text: null,
   },
   {
@@ -25,6 +27,7 @@ const DEFAULT_UPDATES = [
     date: "2026-07-28",
     dateLabel: "Jul 28, 2026",
     title: "Luna, the automation bot, added to server",
+    image: "/img/people/luna.svg",
     text: null,
   },
 ]
@@ -56,7 +59,21 @@ export default function UpdatesSection() {
           {updates.map((item, i) => (
             <li className="timeline__item reveal" key={i}>
               <span className="timeline__marker" aria-hidden="true"></span>
-              <article className="card timeline__card">
+              <article
+                className={`card timeline__card${item.image ? " timeline__card--media" : ""}`}
+              >
+                {item.image && (
+                  <img
+                    className="timeline__thumb"
+                    src={item.image}
+                    alt=""
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <div className="timeline__body">
                 <div className="timeline__meta">
                   <span
                     className={`badge ${item.badgeClass || (item.badge === "Featured" ? "badge--featured" : "badge--fix")}`}
@@ -69,6 +86,7 @@ export default function UpdatesSection() {
                 </div>
                 <h3 className="timeline__title">{item.title}</h3>
                 {item.text && <p className="timeline__text">{item.text}</p>}
+                </div>
               </article>
             </li>
           ))}
