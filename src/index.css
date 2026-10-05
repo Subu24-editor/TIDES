@@ -3631,3 +3631,10 @@ a.tool__cta:hover {
     border-radius: 12px;
   }
 }
+
+/* Discord announcement badge */
+.badge--announce {
+  color: #b9c8ff;
+  background: rgba(114, 137, 218, 0.14);
+  border-color: rgba(114, 137, 218, 0.4);
+}

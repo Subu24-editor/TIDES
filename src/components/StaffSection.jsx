@@ -47,7 +47,8 @@ const DEFAULT_STAFF = {
 }
 
 function PersonCard({ person, isOwner }) {
-  const { src: avatarSrc, onError } = useAvatar(person)
+  const { src: avatarSrc, onError, liveName } = useAvatar(person)
+  const displayName = liveName || person.name
   const hasAvatar = Boolean(person.image || person.discordId)
   return (
     <article
@@ -78,7 +79,7 @@ function PersonCard({ person, isOwner }) {
           </span>
         )}
       </span>
-      <h4 className="person__name">{person.name}</h4>
+      <h4 className="person__name">{displayName}</h4>
       <p className="person__role">
         {person.role || (isOwner ? "Owner" : "Admin")}
       </p>

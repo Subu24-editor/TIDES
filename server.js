@@ -178,6 +178,23 @@ const server = http.createServer(async (req, res) => {
     return
   }
 
+  // Discord announcements -> Updates timeline
+  if (req.url?.startsWith("/api/discord-announcements")) {
+    res.setHeader("Content-Type", "application/json")
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    try {
+      const { fetchAnnouncements } = await import("./api/discord-announcements.js")
+      const data = await fetchAnnouncements()
+      res.setHeader("Cache-Control", "public, max-age=30")
+      res.statusCode = 200
+      res.end(JSON.stringify(data))
+    } catch (err) {
+      res.statusCode = 502
+      res.end(JSON.stringify({ error: "Announcements unavailable", items: [] }))
+    }
+    return
+  }
+
   // Live Discord server stats (member + online counts)
   if (req.url?.startsWith("/api/discord-stats")) {
     res.setHeader("Content-Type", "application/json")

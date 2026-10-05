@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import useScrollReveal from "../hooks/useScrollReveal.js"
 import useStore from "../hooks/useStore.js"
+import useAnnouncements from "../hooks/useAnnouncements.js"
 
 const DEFAULT_UPDATES = [
   {
@@ -35,7 +36,18 @@ const DEFAULT_UPDATES = [
 export default function UpdatesSection() {
   const ref = useRef(null)
   useScrollReveal(ref)
-  const [updates] = useStore("changelog", DEFAULT_UPDATES)
+  const [curated] = useStore("changelog", DEFAULT_UPDATES)
+  const announcements = useAnnouncements()
+
+  // Live Discord posts + the curated changelog, newest first.
+  const updates = [...announcements, ...curated]
+    .map((item, index) => ({ item, index }))
+    .sort((a, b) => {
+      const byDate = String(b.item.date || "").localeCompare(String(a.item.date || ""))
+      return byDate || a.index - b.index
+    })
+    .map(({ item }) => item)
+    .slice(0, 12)
 
   return (
     <section
@@ -57,7 +69,7 @@ export default function UpdatesSection() {
 
         <ol className="timeline">
           {updates.map((item, i) => (
-            <li className="timeline__item reveal" key={i}>
+            <li className="timeline__item reveal" key={item.id || i}>
               <span className="timeline__marker" aria-hidden="true"></span>
               <article
                 className={`card timeline__card${item.image ? " timeline__card--media" : ""}`}

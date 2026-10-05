@@ -219,6 +219,21 @@ function jsonDbPlugin() {
     }
   }
 
+  const handleDiscordAnnouncementsApi = async (req, res) => {
+    res.setHeader("Content-Type", "application/json")
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    try {
+      const { fetchAnnouncements } = await import("./api/discord-announcements.js")
+      const data = await fetchAnnouncements()
+      res.setHeader("Cache-Control", "public, max-age=30")
+      res.statusCode = 200
+      res.end(JSON.stringify(data))
+    } catch (err) {
+      res.statusCode = 502
+      res.end(JSON.stringify({ error: "Announcements unavailable", items: [] }))
+    }
+  }
+
   return {
     name: "json-db-api",
     configureServer(server) {
@@ -226,12 +241,14 @@ function jsonDbPlugin() {
       server.middlewares.use("/api/discord-user", handleDiscordUserApi)
       server.middlewares.use("/api/discord-roles", handleDiscordRolesApi)
       server.middlewares.use("/api/discord-stats", handleDiscordStatsApi)
+      server.middlewares.use("/api/discord-announcements", handleDiscordAnnouncementsApi)
     },
     configurePreviewServer(server) {
       server.middlewares.use("/api/db", handleDbApi)
       server.middlewares.use("/api/discord-user", handleDiscordUserApi)
       server.middlewares.use("/api/discord-roles", handleDiscordRolesApi)
       server.middlewares.use("/api/discord-stats", handleDiscordStatsApi)
+      server.middlewares.use("/api/discord-announcements", handleDiscordAnnouncementsApi)
     },
   }
 }

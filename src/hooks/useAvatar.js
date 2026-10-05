@@ -9,18 +9,18 @@ const isPlaceholder = (src) => !src || src.startsWith("/img/")
 
 function readCache(id) {
   try {
-    const raw = localStorage.getItem(`dt-avatar:${id}`)
+    const raw = localStorage.getItem(`dt-profile:${id}`)
     if (!raw) return null
-    const { url, t } = JSON.parse(raw)
-    return url && Date.now() - t < TTL ? url : null
+    const { url, name, t } = JSON.parse(raw)
+    return url && Date.now() - t < TTL ? { url, name: name || "" } : null
   } catch {
     return null
   }
 }
 
-function writeCache(id, url) {
+function writeCache(id, profile) {
   try {
-    localStorage.setItem(`dt-avatar:${id}`, JSON.stringify({ url, t: Date.now() }))
+    localStorage.setItem(`dt-profile:${id}`, JSON.stringify({ ...profile, t: Date.now() }))
   } catch {
     /* storage unavailable — fine */
   }
@@ -37,9 +37,10 @@ function lookup(id) {
         .then((data) => {
           // only trust a real lookup (the API returns an empty name when it
           // could not reach Discord, and that must not replace a good image)
-          const url = data && data.name && data.avatar ? data.avatar : null
-          if (url) writeCache(id, url)
-          return url
+          const profile =
+            data && data.name && data.avatar ? { url: data.avatar, name: data.name } : null
+          if (profile) writeCache(id, profile)
+          return profile
         })
         .catch(() => null)
         .finally(() => inflight.delete(id)),
@@ -50,26 +51,47 @@ function lookup(id) {
 
 /**
  * Picks the best avatar for a person:
- *   stored image -> (real Discord avatar if the stored one is only a placeholder)
+ *   stored image -> real Discord avatar when the stored one is only a local
+ *   placeholder, or when the person has `syncDiscord: true` (always follow
+ *   their live Discord avatar and display name)
  *   -> generated monogram if an image ever fails to load.
  */
 export default function useAvatar(person, fallbackSrc) {
   const stored = (person && person.image) || ""
   const id = person && person.discordId
   const name = person && person.name
-  const [src, setSrc] = useState(stored || fallbackSrc || fallbackAvatar(name))
+  const sync = Boolean(person && person.syncDiscord)
+  const wantsLive = Boolean(id) && (sync || isPlaceholder(stored))
+
+  const initial = () => {
+    if (wantsLive && sync) {
+      const cached = readCache(String(id))
+      if (cached) return cached
+    }
+    return null
+  }
+
+  const [profile, setProfile] = useState(initial)
+  const [src, setSrc] = useState(
+    (profile && profile.url) || stored || fallbackSrc || fallbackAvatar(name),
+  )
 
   useEffect(() => {
-    setSrc(stored || fallbackSrc || fallbackAvatar(name))
-    if (!id || !isPlaceholder(stored)) return
+    const base = stored || fallbackSrc || fallbackAvatar(name)
+    const cached = wantsLive && sync ? readCache(String(id)) : null
+    setSrc((cached && cached.url) || base)
+    setProfile(cached)
+    if (!wantsLive) return
     let alive = true
-    lookup(String(id)).then((url) => {
-      if (alive && url) setSrc(url)
+    lookup(String(id)).then((live) => {
+      if (!alive || !live) return
+      setSrc(live.url)
+      setProfile(live)
     })
     return () => {
       alive = false
     }
-  }, [stored, id, name, fallbackSrc])
+  }, [stored, id, name, sync, wantsLive, fallbackSrc])
 
   const onError = useCallback(
     (e) => {
@@ -79,5 +101,6 @@ export default function useAvatar(person, fallbackSrc) {
     [name],
   )
 
-  return { src, onError }
+  // `liveName` is only returned for people marked syncDiscord
+  return { src, onError, liveName: sync && profile ? profile.name : "" }
 }

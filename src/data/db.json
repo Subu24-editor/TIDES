@@ -88,7 +88,8 @@
         "role": "Owner",
         "text": "Runs the server and guides the staff, with a hand in community leadership and direction.",
         "discordId": "1308098540722982922",
-        "image": "https://cdn.discordapp.com/avatars/1308098540722982922/148beca4e9fdc11b492da388645524a8.png?size=256"
+        "image": "https://cdn.discordapp.com/avatars/1308098540722982922/148beca4e9fdc11b492da388645524a8.png?size=256",
+        "syncDiscord": true
       },
       {
         "mono": "F",
@@ -96,7 +97,8 @@
         "role": "Owner",
         "text": "Community leadership and direction.",
         "discordId": "884470673144164382",
-        "image": "https://cdn.discordapp.com/avatars/884470673144164382/a05c9faf653a5fac6887c429ff06e6e6.png?size=256"
+        "image": "https://cdn.discordapp.com/avatars/884470673144164382/a05c9faf653a5fac6887c429ff06e6e6.png?size=256",
+        "syncDiscord": true
       },
       {
         "mono": "H",
