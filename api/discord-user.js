@@ -9,6 +9,7 @@ export default async function handler(req, res) {
     return
   }
 
+  let hint = "no_bot_token: add DISCORD_BOT_TOKEN in Vercel and redeploy"
   try {
     const headers = {
       "User-Agent": "TheDarkTides/1.0.0 (https://thedarktides.org)",
@@ -16,12 +17,14 @@ export default async function handler(req, res) {
     const botToken = (process.env.DISCORD_BOT_TOKEN || process.env.VITE_DISCORD_BOT_TOKEN)
     if (botToken) {
       headers["Authorization"] = `Bot ${botToken}`
+      hint = "discord_lookup_failed"
     }
 
     const discordRes = await fetch(
       `https://discord.com/api/v10/users/${userId}`,
       { headers },
     )
+    if (!discordRes.ok && botToken) hint = `discord_http_${discordRes.status}` + (discordRes.status === 401 ? " (bot token rejected: reset it and update DISCORD_BOT_TOKEN)" : "")
     if (discordRes.ok) {
       const data = await discordRes.json()
       const name = data.global_name || data.username
@@ -59,6 +62,7 @@ export default async function handler(req, res) {
   }
 
   res.status(200).json({
+    hint,
     id: userId,
     name: "",
     avatar: `https://cdn.discordapp.com/embed/avatars/${defaultAvatarIndex}.png`,

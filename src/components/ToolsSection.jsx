@@ -25,7 +25,7 @@ const DownloadIcon = () => (
 const DEFAULT_TOOLS = [
   {
     icon: <DownloadIcon />,
-    title: "Tides Downloader",
+    title: "Drydock",
     text: "Built by Dreamleak. Grab the link and setup details in Discord.",
     ctaText: "Discord link coming soon →",
     href: null,

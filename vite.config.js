@@ -230,7 +230,7 @@ function jsonDbPlugin() {
       res.end(JSON.stringify(data))
     } catch (err) {
       res.statusCode = 502
-      res.end(JSON.stringify({ error: "Announcements unavailable", items: [] }))
+      res.end(JSON.stringify({ error: "Announcements unavailable", hint: err.hint || String(err.message || err), items: [] }))
     }
   }
 

@@ -18,7 +18,7 @@ const DEFAULT_UPDATES = [
     badgeClass: "badge--fix",
     date: "2026-08-09",
     dateLabel: "Aug 09, 2026",
-    title: "Tides Downloader updated to V1.2.4!",
+    title: "Drydock updated to V1.2.4!",
     text: "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates.",
   },
   {
@@ -26,7 +26,7 @@ const DEFAULT_UPDATES = [
     badgeClass: "badge--fix",
     date: "2026-08-08",
     dateLabel: "Aug 08, 2026",
-    title: "Tides Downloader updated to V1.2.0!",
+    title: "Drydock updated to V1.2.0!",
     text: "",
   },
   {
@@ -91,7 +91,7 @@ const DEFAULT_ABOUT = [
 
 const DEFAULT_TOOLS = [
   {
-    title: "Tides Downloader",
+    title: "Drydock",
     text: "Built by Dreamleak. Grab the link and setup details in Discord.",
     ctaText: "Discord link coming soon →",
     href: "",
@@ -153,7 +153,7 @@ const DEFAULT_DEVS = [
   {
     name: "Dreamleak",
     role: "Developer",
-    text: "Founder of Luna bot and the Tides Downloader — building the tools that keep the community running.",
+    text: "Founder of Luna bot and Drydock — building the tools that keep the community running.",
     image: "/img/people/dreamleak.svg",
     lineage: ["Dreamleak", "Developer", "Luna", "Dark Tides Community"],
     discordId: "",
@@ -1480,7 +1480,7 @@ export default function Dashboard() {
               <div>
                 <h1 className="dash-title">Tools & Activations</h1>
                 <p className="dash-subtitle">
-                  Manage community tools such as Tides Downloader.
+                  Manage community tools such as Drydock.
                 </p>
               </div>
               <button

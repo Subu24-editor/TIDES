@@ -9,8 +9,8 @@ const DEFAULT_UPDATES = [
     badgeClass: "badge--fix",
     date: "2026-08-09",
     dateLabel: "Aug 09, 2026",
-    title: "Tides Downloader updated to V1.2.4!",
-    image: "/img/updates/downloader.svg",
+    title: "Drydock updated to V1.2.4!",
+    image: "/img/updates/drydock.svg",
     text: "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates.",
   },
   {
@@ -18,8 +18,8 @@ const DEFAULT_UPDATES = [
     badgeClass: "badge--fix",
     date: "2026-08-08",
     dateLabel: "Aug 08, 2026",
-    title: "Tides Downloader updated to V1.2.0!",
-    image: "/img/updates/downloader.svg",
+    title: "Drydock updated to V1.2.0!",
+    image: "/img/updates/drydock.svg",
     text: null,
   },
   {

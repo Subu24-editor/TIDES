@@ -7,7 +7,7 @@ const DEFAULT_DEVS = [
   {
     name: "Dreamleak",
     role: "Developer",
-    text: "Founder of Luna bot and the Tides Downloader — building the tools that keep the community running.",
+    text: "Founder of Luna bot and Drydock — building the tools that keep the community running.",
     image: "/img/people/dreamleak.svg",
     lineage: ["Dreamleak", "Developer", "Luna", "Dark Tides Community"],
   },

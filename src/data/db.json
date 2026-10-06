@@ -5,18 +5,18 @@
       "badgeClass": "badge--fix",
       "date": "2026-08-09",
       "dateLabel": "Aug 09, 2026",
-      "title": "Tides Downloader updated to V1.2.4!",
+      "title": "Drydock updated to V1.2.4!",
       "text": "Added block for Steam game updates. Added a setting to disable/enable TIDES updates or game updates.",
-      "image": "/img/updates/downloader.svg"
+      "image": "/img/updates/drydock.svg"
     },
     {
       "badge": "Fix",
       "badgeClass": "badge--fix",
       "date": "2026-08-08",
       "dateLabel": "Aug 08, 2026",
-      "title": "Tides Downloader updated to V1.2.0!",
+      "title": "Drydock updated to V1.2.0!",
       "text": "",
-      "image": "/img/updates/downloader.svg"
+      "image": "/img/updates/drydock.svg"
     },
     {
       "badge": "Featured",
@@ -74,7 +74,7 @@
   ],
   "tools": [
     {
-      "title": "Tides Downloader",
+      "title": "Drydock",
       "text": "Built by Dreamleak. Grab the link and setup details in Discord.",
       "ctaText": "Discord link coming soon →",
       "href": ""
@@ -156,7 +156,7 @@
     {
       "name": "Dreamleak",
       "role": "Developer",
-      "text": "Founder of Luna bot and the Tides Downloader — building the tools that keep the community running.",
+      "text": "Founder of Luna bot and Drydock — building the tools that keep the community running.",
       "image": "https://cdn.discordapp.com/avatars/234662586082131968/b4b52b600b669f4101fd4ef55197a4b4.png?size=256",
       "lineage": [
         "Dreamleak",
@@ -208,8 +208,8 @@
     },
     {
       "id": "q2",
-      "question": "What is Tides Downloader?",
-      "answer": "Tides Downloader is a tool built by Dreamleak for The Dark Tides community. Setup details and access information are provided through the Discord server.",
+      "question": "What is Drydock?",
+      "answer": "Drydock is a tool built by Dreamleak for The Dark Tides community. Setup details and access information are provided through the Discord server.",
       "placeholder": false
     },
     {

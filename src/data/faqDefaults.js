@@ -8,9 +8,9 @@ const DEFAULT_FAQ = [
   },
   {
     id: "q2",
-    question: "What is Tides Downloader?",
+    question: "What is Drydock?",
     answer:
-      "Tides Downloader is a tool built by Dreamleak for The Dark Tides community. Setup details and access information are provided through the Discord server.",
+      "Drydock is a tool built by Dreamleak for The Dark Tides community. Setup details and access information are provided through the Discord server.",
     placeholder: false,
   },
   {

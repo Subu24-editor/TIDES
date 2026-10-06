@@ -26,7 +26,7 @@
 | **Why Choose** | Feature highlights with icons                                             |
 | **Community**  | Discord community overview card                                           |
 | **About**      | Four-pillar mission cards                                                 |
-| **Tools**      | Community tools (e.g. Tides Downloader)                                   |
+| **Tools**      | Community tools (e.g. Drydock)                                   |
 | **Staff**      | Owner & Admin cards with Discord avatar sync                              |
 | **Developer**  | Developer spotlight with Discord profile integration                      |
 | **Luna**       | Bot section with profile info                                             |
