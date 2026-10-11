@@ -260,6 +260,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         dashboard: resolve(__dirname, "dashboard.html"),
+        mc: resolve(__dirname, "mc.html"),
       },
     },
   },
