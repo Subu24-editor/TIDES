@@ -3,7 +3,6 @@ import Atmosphere from "./components/Atmosphere.jsx"
 import CustomCursor from "./components/CustomCursor.jsx"
 import Footer from "./components/Footer.jsx"
 import useScrollReveal from "./hooks/useScrollReveal.js"
-import useTilt from "./hooks/useTilt.js"
 import useScrollEffects from "./hooks/useScrollEffects.js"
 
 const MAIN_SITE = "https://darktides.online"
@@ -91,19 +90,6 @@ function Gate({ denied }) {
   )
 }
 
-function Details({ rows }) {
-  return (
-    <dl className="mc-details">
-      {rows.map((r, i) => (
-        <div key={i}>
-          <dt>{r.name}</dt>
-          <dd>{r.value}</dd>
-        </div>
-      ))}
-    </dl>
-  )
-}
-
 function ServerCard({ server }) {
   const [copied, setCopied] = useState(false)
   const copy = () => {
@@ -149,16 +135,20 @@ function Showcase() {
     )
   }
   if (!content) return <main id="main" className="mc-pad" />
-
   return <ShowcaseBody content={content} />
 }
 
-// Mounted only after the admin-only content has loaded, so the reveal and
-// tilt hooks see the cards.
+// Mounted only after the admin-only content has loaded, so the reveal hook sees the cards.
 function ShowcaseBody({ content }) {
   const ref = useRef(null)
+  const [query, setQuery] = useState("")
   useScrollReveal(ref)
-  useTilt()
+
+  const q = query.trim().toLowerCase()
+  const groups = content.groups
+    .map((g) => ({ ...g, games: g.games.filter((n) => n.toLowerCase().includes(q)) }))
+    .filter((g) => g.games.length)
+  const total = content.groups.reduce((n, g) => n + g.games.length, 0)
 
   return (
     <main id="main" ref={ref}>
@@ -174,52 +164,32 @@ function ShowcaseBody({ content }) {
 
           {content.server && <ServerCard server={content.server} />}
 
-          <div className="grid grid--games">
-            {content.games.map((game, i) => (
-              <article className="card game reveal" key={i} data-tilt>
-                <div className="game__media">
-                  <img src={game.art} alt="" width="800" height="480" loading="lazy" decoding="async" />
-                  <span className="game__badge">{game.badge}</span>
-                </div>
-                <div className="card__body">
-                  <p className="game__genre">{game.genre}</p>
-                  <h3 className="game__title">{game.title}</h3>
-                  <p className="game__text mc-text">{game.text}</p>
-                  {game.details?.length > 0 && <Details rows={game.details} />}
-                  {game.url ? (
-                    <a className="btn btn--ghost btn--sm" href={game.url} target="_blank" rel="noopener noreferrer">
-                      View Game <span aria-hidden="true">→</span>
-                    </a>
-                  ) : (
-                    <button className="btn btn--ghost btn--sm" type="button" aria-disabled="true" disabled>
-                      View Game <span aria-hidden="true">→</span>
-                    </button>
-                  )}
-                </div>
-              </article>
-            ))}
+          <div className="mc-search reveal">
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={`Search ${total} games…`}
+              aria-label="Search games"
+            />
           </div>
 
-          {content.tokens?.length > 0 && (
-            <>
-              <header className="section-head section-head--center reveal mc-tokens-head">
-                <p className="eyebrow">Tokens</p>
-                <h2 className="section-title">Currently Available</h2>
-              </header>
-              <div className="grid grid--games">
-                {content.tokens.map((t) => (
-                  <article className="card reveal" key={t.id} data-tilt>
-                    <div className="card__body">
-                      {t.badge && <p className="game__genre">{t.badge}</p>}
-                      <h3 className="game__title">{t.title}</h3>
-                      {t.text && <p className="game__text mc-text">{t.text}</p>}
-                      {t.details?.length > 0 && <Details rows={t.details} />}
-                    </div>
-                  </article>
-                ))}
+          {groups.length === 0 && <p className="section-sub mc-empty">No games match your search.</p>}
+
+          {groups.map((g) => (
+            <section className="card card--glass mc-group reveal" key={g.name} aria-label={g.name}>
+              <div className="card__body">
+                <h2 className="mc-group__title">
+                  {g.name} <span className="mc-group__count">{g.games.length}</span>
+                </h2>
+                <ul className="mc-games">
+                  {g.games.map((name) => (
+                    <li key={name}>{name}</li>
+                  ))}
+                </ul>
               </div>
-            </>
-          )}
+            </section>
+          ))}
         </div>
       </section>
     </main>

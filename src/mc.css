@@ -30,3 +30,17 @@
 
 .mc-server { max-width: 560px; margin: 0 auto var(--space-8); text-align: center; }
 .mc-server__addr { font-family: var(--font-display); font-size: var(--fs-h3); color: var(--moon); margin: var(--space-2) 0 var(--space-4); word-break: break-all; }
+
+.mc-search { max-width: 560px; margin: 0 auto var(--space-6, 2rem); }
+.mc-search input {
+  width: 100%; padding: 0.85rem 1.1rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05);
+  color: inherit; font: inherit;
+}
+.mc-search input:focus { outline: 2px solid rgba(120, 220, 255, 0.55); outline-offset: 2px; }
+.mc-empty { text-align: center; }
+.mc-group { margin: 0 auto var(--space-6, 2rem); }
+.mc-group__title { font-family: var(--font-display); margin: 0 0 var(--space-4, 1rem); }
+.mc-group__count { font-size: 0.8em; opacity: 0.6; margin-left: 0.4em; }
+.mc-games { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem 1.5rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.mc-games li { padding: 0.45rem 0 0.45rem 0.9rem; border-left: 2px solid rgba(120, 220, 255, 0.35); }
