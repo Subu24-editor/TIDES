@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
+  <script>
+    /* Reached via the redirect from "/": show the clean URL again. */
+    if (location.pathname === "/mc.html") history.replaceState(null, "", "/" + location.search);
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Minecraft — THE DARK TIDES</title>
