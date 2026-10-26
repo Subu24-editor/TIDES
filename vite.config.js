@@ -223,8 +223,8 @@ function jsonDbPlugin() {
     res.setHeader("Content-Type", "application/json")
     res.setHeader("Access-Control-Allow-Origin", "*")
     try {
-      const { fetchAnnouncements } = await import("./api/discord-announcements.js")
-      const data = await fetchAnnouncements()
+      const { fetchAnnouncements, feedFromRequest } = await import("./api/discord-announcements.js")
+      const data = await fetchAnnouncements({ feed: feedFromRequest(req) })
       res.setHeader("Cache-Control", "public, max-age=30")
       res.statusCode = 200
       res.end(JSON.stringify(data))
@@ -260,7 +260,6 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         dashboard: resolve(__dirname, "dashboard.html"),
-        mc: resolve(__dirname, "mc.html"),
       },
     },
   },

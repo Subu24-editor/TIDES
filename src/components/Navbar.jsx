@@ -5,6 +5,7 @@ import useStore from "../hooks/useStore.js"
 
 const NAV_LINKS = [
   { href: "#home", label: "Home" },
+  { href: "#announcements", label: "News" },
   { href: "#games", label: "Games" },
   { href: "#updates", label: "Updates" },
   { href: "#community", label: "Community" },

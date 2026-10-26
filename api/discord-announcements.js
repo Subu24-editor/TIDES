@@ -10,8 +10,15 @@
  */
 
 const API = "https://discord.com/api/v10"
-// #announcements of The Dark Tides (override with DISCORD_ANNOUNCEMENTS_CHANNEL_ID)
-const DEFAULT_CHANNEL_ID = "1547570522663948349"
+const DEFAULT_GUILD_ID = "1498057802499883181"
+
+// Two feeds, two channels (each can be overridden from Vercel env vars):
+//   announcements -> the public Announcements section   (DISCORD_ANNOUNCEMENTS_CHANNEL_ID)
+//   updates       -> merged into the Updates timeline   (DISCORD_UPDATES_CHANNEL_ID)
+const FEEDS = {
+  announcements: { env: "DISCORD_ANNOUNCEMENTS_CHANNEL_ID", fallback: "1498745528534565075" },
+  updates: { env: "DISCORD_UPDATES_CHANNEL_ID", fallback: "1547570522663948349" },
+}
 const USER_AGENT = "TheDarkTides/1.0.0 (https://darktides.online)"
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
@@ -84,6 +91,86 @@ export function toUpdate(msg) {
   }
 }
 
+function avatarUrl(user) {
+  if (!user) return null
+  if (user.avatar) {
+    const ext = user.avatar.startsWith("a_") ? "gif" : "png"
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}?size=64`
+  }
+  try {
+    return `https://cdn.discordapp.com/embed/avatars/${Number((BigInt(user.id) >> 22n) % 6n)}.png`
+  } catch {
+    return null
+  }
+}
+
+function allImages(msg, max = 4) {
+  const urls = []
+  for (const a of msg.attachments || []) {
+    if ((a.content_type || "").startsWith("image/") && a.url) urls.push(a.proxy_url || a.url)
+  }
+  for (const e of msg.embeds || []) {
+    const u = (e.image && e.image.url) || (e.thumbnail && e.thumbnail.url)
+    if (u) urls.push(u)
+  }
+  return [...new Set(urls)].slice(0, max)
+}
+
+function topReactions(msg, max = 4) {
+  return (msg.reactions || [])
+    .filter((r) => r && r.emoji && r.count > 0)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, max)
+    .map((r) => ({
+      count: r.count,
+      emoji: r.emoji.id ? null : r.emoji.name,
+      customId: r.emoji.id || null,
+      animated: Boolean(r.emoji.animated),
+      name: r.emoji.name || "",
+    }))
+}
+
+/** Full announcement post for the public Announcements section. */
+export function toPost(msg, ctx = {}) {
+  if (msg.type !== 0 && msg.type !== 19) return null
+  let body = cleanText(msg.content)
+  const embed = (msg.embeds || [])[0]
+  if (!body && embed) body = cleanText([embed.title, embed.description].filter(Boolean).join("\n"))
+  const images = allImages(msg)
+  if (!body && images.length === 0) return null
+
+  const lines = body.split("\n").map((l) => l.trim()).filter(Boolean)
+  let title = lines[0] || ""
+  let text = lines.slice(1).join("\n")
+  if (title.length > 110) {
+    const cut = title.slice(0, 110).replace(/\s+\S*$/, "")
+    text = [title.slice(cut.length).trim(), text].filter(Boolean).join("\n")
+    title = cut + "…"
+  }
+  if (text.length > 1400) text = text.slice(0, 1400).replace(/\s+\S*$/, "") + "…"
+
+  const guild = ctx.guildId || DEFAULT_GUILD_ID
+  const channel = ctx.channelId || ""
+  return {
+    source: "discord",
+    id: msg.id,
+    url: channel ? `https://discord.com/channels/${guild}/${channel}/${msg.id}` : null,
+    author: {
+      name: (msg.author && (msg.author.global_name || msg.author.username)) || "",
+      avatar: avatarUrl(msg.author),
+    },
+    timestamp: msg.timestamp,
+    edited: Boolean(msg.edited_timestamp),
+    date: msg.timestamp.slice(0, 10),
+    dateLabel: dateLabel(msg.timestamp),
+    title,
+    text: text || null,
+    images,
+    pinned: Boolean(msg.pinned),
+    reactions: topReactions(msg),
+  }
+}
+
 function hintFor(status) {
   if (status === 401) return "Bot token rejected (401): reset the token in the Discord Developer Portal and update DISCORD_BOT_TOKEN in Vercel, then redeploy."
   if (status === 403) return "The bot cannot see this channel (403): give it View Channel and Read Message History there, and make sure it is in the server."
@@ -91,8 +178,11 @@ function hintFor(status) {
   return `Discord answered HTTP ${status}.`
 }
 
-export async function fetchAnnouncements(limit = 12) {
-  const channelId = process.env.DISCORD_ANNOUNCEMENTS_CHANNEL_ID || DEFAULT_CHANNEL_ID
+export async function fetchAnnouncements({ feed = "announcements", limit } = {}) {
+  const cfg = FEEDS[feed] || FEEDS.announcements
+  const channelId = process.env[cfg.env] || cfg.fallback
+  const guildId =
+    process.env.DISCORD_GUILD_ID || process.env.VITE_DISCORD_GUILD_ID || DEFAULT_GUILD_ID
   const botToken = process.env.DISCORD_BOT_TOKEN || process.env.VITE_DISCORD_BOT_TOKEN
   if (!botToken) {
     return {
@@ -113,7 +203,11 @@ export async function fetchAnnouncements(limit = 12) {
   }
   const messages = await res.json()
   const list = Array.isArray(messages) ? messages : []
-  const items = list.map(toUpdate).filter(Boolean).slice(0, limit)
+  const rich = feed !== "updates"
+  const items = list
+    .map((m) => (rich ? toPost(m, { guildId, channelId }) : toUpdate(m)))
+    .filter(Boolean)
+    .slice(0, limit || (rich ? 9 : 12))
 
   let hint
   if (list.length === 0) {
@@ -121,7 +215,17 @@ export async function fetchAnnouncements(limit = 12) {
   } else if (items.length === 0) {
     hint = "Messages were found but all came back empty: turn on Message Content Intent in the Discord Developer Portal (Bot tab) for this bot."
   }
-  return { configured: true, items, ...(hint ? { hint } : {}) }
+  return { configured: true, feed, items, ...(hint ? { hint } : {}) }
+}
+
+export function feedFromRequest(req) {
+  try {
+    const q = req.query && req.query.feed
+    const feed = q || new URL(req.url || "", "http://local").searchParams.get("feed")
+    return FEEDS[feed] ? feed : "announcements"
+  } catch {
+    return "announcements"
+  }
 }
 
 export default async function handler(req, res) {
@@ -132,8 +236,10 @@ export default async function handler(req, res) {
     return
   }
   try {
-    const data = await fetchAnnouncements()
-    res.setHeader("Cache-Control", "public, s-maxage=120, stale-while-revalidate=600")
+    const feed = feedFromRequest(req)
+    const data = await fetchAnnouncements({ feed })
+    // short edge cache: new announcements show up within about a minute
+    res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
     res.status(200).json(data)
   } catch (err) {
     res.setHeader("Cache-Control", "no-store")

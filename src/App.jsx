@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx"
 import Counter from "./components/Counter.jsx"
 import Hero from "./components/Hero.jsx"
 import GamesSection from "./components/GamesSection.jsx"
+import AnnouncementsSection from "./components/AnnouncementsSection.jsx"
 import UpdatesSection from "./components/UpdatesSection.jsx"
 import WhySection from "./components/WhySection.jsx"
 import CommunitySection from "./components/CommunitySection.jsx"
@@ -47,6 +48,7 @@ export default function App() {
       <main id="main">
         <Counter />
         <Hero />
+        <AnnouncementsSection />
         <GamesSection />
         <UpdatesSection />
         <WhySection />
